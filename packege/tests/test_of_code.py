@@ -1,6 +1,7 @@
 from ..need_to_move import need_to_move
 from ..is_cbs import is_cbs
 import pytest
+import unittest
 
 
 def test_is_cbs():
@@ -35,3 +36,12 @@ def param():
 def test_for_fixture(param):
     assert not is_cbs(param)
     assert need_to_move(param) == 1
+
+
+class NeedToMoveTests(unittest.TestCase):
+    def test_1(self):
+        self.assertEqual(need_to_move('())('), 1)
+
+
+if __name__ == '__main__':
+    unittest.main()
