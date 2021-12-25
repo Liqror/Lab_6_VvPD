@@ -1,3 +1,10 @@
+"""
+Основной модуль пакета, выступает в роли точки входа
+
+Ф-я main - ввод с возможностью завершения,
+и вывода соответствующей информации в случае некорректного ввода
+"""
+
 from need_to_move import need_to_move
 from is_cbs import is_cbs
 from check_of_input import check_of_input
