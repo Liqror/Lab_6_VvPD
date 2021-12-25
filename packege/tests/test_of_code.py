@@ -4,13 +4,15 @@ import pytest
 import unittest
 
 
-def test_is_cbs():
-    assert is_cbs('()')
-    assert is_cbs('()()(())')
-    assert not is_cbs(')(')
-    assert not is_cbs('()(')
-    assert not is_cbs('(()')
-    assert not is_cbs('(((')
+@pytest.mark.parametrize("a, b", [('()', True),
+                               ('()()(())', True),
+                               (')(', False),
+                               ('()(', False),
+                               ('(()', False),
+                               ('(((', False)
+                               ])
+def test_is_cbs(a, b):
+    assert is_cbs(a) == b
 
 
 def test_need_to_move():
@@ -21,11 +23,10 @@ def test_need_to_move():
     assert need_to_move(')))(((') == 3
 
 
-@pytest.mark.parametrize("a", ['()()))((',
-                               '()))(('])
-def test_example(a):
-    assert need_to_move(a) == 2
-    assert need_to_move(a) == 2
+@pytest.mark.parametrize("a, b", [('()()))((', 2),
+                                  ('()))((', 2)])
+def test_example(a, b):
+    assert need_to_move(a) == b
 
 
 @pytest.fixture()
